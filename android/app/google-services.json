@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "451761425180",
+    "project_id": "admob-app-b465b",
+    "storage_bucket": "admob-app-b465b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451761425180:android:d1f4f5aae6cc55d9d688d9",
+        "android_client_info": {
+          "package_name": "com.aloranking.admobapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451761425180-upt75b3vcv1o45s8vvrn758b607e4l6n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLe-ooi4Mii7Hs9qKI3xuqhxLOp1LeyTs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451761425180-upt75b3vcv1o45s8vvrn758b607e4l6n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

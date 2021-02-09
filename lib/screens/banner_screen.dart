@@ -9,6 +9,41 @@ class BannerScreen extends StatefulWidget {
 
 class _BannerScreenState extends State<BannerScreen> {
 
+  //  Add _bannerAd
+  BannerAd _bannerAd;
+
+
+  // Implement _loadBannerAd()
+  void _loadBannerAd() {
+    _bannerAd
+      ..load()
+      ..show(anchorType: AnchorType.top);
+  }
+
+  Future<void> _initAdMob() {
+    // TODO: Initialize AdMob SDK
+    return FirebaseAdMob.instance.initialize(appId: AdManager.appId);
+  }
+
+
+
+  @override
+  Future<void> initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _initAdMob();
+
+    //  Initialize _bannerAd
+    _bannerAd = BannerAd(
+      adUnitId: AdManager.bannerAdUnitId,
+      size: AdSize.banner,
+    );
+
+    // TODO: Load a Banner Ad
+    _loadBannerAd();
+
+  }
 
 
   @override
@@ -16,12 +51,73 @@ class _BannerScreenState extends State<BannerScreen> {
     return Scaffold(
       appBar: AppBar(title: Text('Banner'),),
       body: SafeArea(
-        child: Column(
-          children: [
+        child: FutureBuilder<void>(
+          future: _initAdMob(),
+          builder: (context, snapshot) {
+            List<Widget> children = <Widget>[
+              Text(
+                "Admob App!",
+                style: TextStyle(
+                  fontSize: 32,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 72),
+              ),
+            ];
 
-          ],
+
+            if(snapshot.hasData){
+
+              children.add(
+                Icon(Icons.android, size: 34,)
+              );
+
+
+
+
+            }else if( snapshot.hasError){
+
+              children.add(
+                  Icon(Icons.error, size: 34,)
+              );
+            }
+
+
+
+
+            else{
+               children.add(SizedBox(
+                 child: CircularProgressIndicator(),
+                 width: 48,
+                 height: 48,
+               ));
+            }
+
+            return Center(
+            child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: children
+            ),
+            );
+
+          }
         ),
       ),
     );
+  }
+
+
+
+  @override
+  void dispose() {
+    // TODO: Dispose BannerAd object
+    _bannerAd?.dispose();
+
+
+
+    super.dispose();
   }
 }

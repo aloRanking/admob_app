@@ -1,3 +1,4 @@
+import 'package:admobapp/screens/interad_screen.dart';
 import 'package:admobapp/utils/ad_manager.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class _BannerScreenState extends State<BannerScreen> {
   void _loadBannerAd() {
     _bannerAd
       ..load()
-      ..show(anchorType: AnchorType.top);
+      ..show(anchorType: AnchorType.bottom);
   }
 
   Future<void> _initAdMob() {
@@ -71,8 +72,20 @@ class _BannerScreenState extends State<BannerScreen> {
             if(snapshot.hasData){
 
               children.add(
-                Icon(Icons.android, size: 34,)
+                Column(
+                  children: [
+                    Icon(Icons.android, size: 34,),
+
+                    RaisedButton(onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> InterAdScreen()));
+                    },
+                    child: Text('Go Inter'),
+                    )
+                  ],
+                )
               );
+
+
 
 
 
